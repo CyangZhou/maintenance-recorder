@@ -24,9 +24,13 @@ jobs:
       uses: gradle/actions/setup-gradle@v3
       with:
         cache-disabled: true
+        gradle-version: '8.2'
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: gradle assembleDebug --stacktrace
+      run: ./gradlew assembleDebug --stacktrace
       
     - name: Upload APK
       uses: actions/upload-artifact@v4
@@ -47,7 +51,7 @@ jobs:
     - name: Get current date
       id: date
       run: echo "date=$(date +'%Y%m%d%H%M')" >> $GITHUB_OUTPUT
-      
+        
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
