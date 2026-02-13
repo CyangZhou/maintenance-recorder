@@ -1,15 +1,1 @@
-package com.papermill.maintenance.ui.theme
-
-import androidx.compose.ui.graphics.Color
-
-val Primary = Color(0xFF1976D2)
-val PrimaryDark = Color(0xFF1565C0)
-val PrimaryLight = Color(0xFF42A5F5)
-val Accent = Color(0xFFFF5722)
-val TextPrimary = Color(0xFF212121)
-val TextSecondary = Color(0xFF757575)
-val Divider = Color(0xFFBDBDBD)
-val Background = Color(0xFFFAFAFA)
-val Surface = Color(0xFFFFFFFF)
-val Error = Color(0xFFF44336)
-val Success = Color(0xFF4CAF50)
+cGFja2FnZSBjb20ucGFwZXJtaWxsLm1haW50ZW5hbmNlLnVpLnRoZW1lCgppbXBvcnQgYW5kcm9pZC5jb21wb3NlLnVpLmdyYXBoaWNzLkNvbG9yCgp2YWwgUHJpbWFyeSA9IENvbG9yKDB4RkYxOTc2RDIpCnZhbCBQcmltYXJ5RGFyayA9IENvbG9yKDB4RkYxNTY1QzApCnZhbCBQcmltYXJ5TGlnaHQgPSBDb2xvcigweEZGNDJBNUY1KQp2YWwgQWNjZW50ID0gQ29sb3IoMHhGRkY1NzIyKQp2YWwgVGV4dFByaW1hcnkgPSBDb2xvcigweEZGMjEyMTIxKQp2YWwgVGV4dFNlY29uZGFyeSA9IENvbG9yKDB4RkY3NTc1NzUpCnZhbCBEaXZpZGVyID0gQ29sb3IoMHhGRkJEQkRCRCkKdmFsIEJhY2tncm91bmQgPSBDb2xvcigweEZGREFGQUZBKQp2YWwgU3VyZmFjZUNvbG9yID0gQ29sb3IoMHhGRkZGRkZGRikKdmFsIEVycm9yID0gQ29sb3IoMHhGRkY0NDMzNikKdmFsIFN1Y2Nlc3MgPSBDb2xvcigweEZGNENBRjUwKQ==
