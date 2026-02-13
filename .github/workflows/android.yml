@@ -26,11 +26,8 @@ jobs:
         cache-disabled: true
         gradle-version: '8.2'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
     - name: Build with Gradle
-      run: ./gradlew assembleDebug --stacktrace
+      run: gradle assembleDebug --stacktrace
       
     - name: Upload APK
       uses: actions/upload-artifact@v4
