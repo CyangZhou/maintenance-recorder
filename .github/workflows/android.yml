@@ -20,13 +20,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
-      with:
-        cache-disabled: true
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: gradle assembleDebug --no-daemon
+      run: ./gradlew assembleDebug --stacktrace --info
       
     - name: Upload APK
       uses: actions/upload-artifact@v4
@@ -52,21 +50,21 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         tag_name: v1.0-${{ steps.date.outputs.date }}
-        name: 维修记录本 v1.0-${{ steps.date.outputs.date }}
+        name: v1.0-${{ steps.date.outputs.date }}
         files: app-debug.apk
         body: |
-          ## 维修记录本
+          ## Maintenance Recorder
           
-          纸厂仪表维修记录安卓应用
+          Android app for paper mill maintenance records
           
-          ### 功能
-          - 文字输入
-          - 语音输入
-          - 拍照上传
-          - 图片选择
-          - 搜索筛选
+          ### Features
+          - Text input
+          - Voice input
+          - Photo upload
+          - Image selection
+          - Search and filter
           
-          ### 安装方法
-          下载 app-debug.apk 文件，在安卓手机上安装即可使用。
+          ### Installation
+          Download app-debug.apk and install on Android device.
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
