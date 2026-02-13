@@ -1,0 +1,71 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+
+    - name: Build with Gradle
+      run: gradle assembleDebug
+      
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-debug
+        path: app/build/outputs/apk/debug/app-debug.apk
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: app-debug
+        
+    - name: Get current date
+      id: date
+      run: echo "date=$(date +'%Y%m%d%H%M')" >> $GITHUB_OUTPUT
+      
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v1.0-${{ steps.date.outputs.date }}
+        name: 维修记录本 v1.0-${{ steps.date.outputs.date }}
+        files: app-debug.apk
+        body: |
+          ## 维修记录本
+          
+          纸厂仪表维修记录安卓应用
+          
+          ### 功能
+          - 文字输入
+          - 语音输入
+          - 拍照上传
+          - 图片选择
+          - 搜索筛选
+          
+          ### 安装方法
+          下载 app-debug.apk 文件，在安卓手机上安装即可使用。
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
